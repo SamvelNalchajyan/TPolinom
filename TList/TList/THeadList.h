@@ -7,7 +7,7 @@ class THeadList :public TList<T>
 protected:
 	TNode<T>* pHead;
 public:
-	THeadList() :TList<T>();
+	THeadList();
 	~THeadList();
 
 	void InsFirst(T el);
@@ -15,7 +15,7 @@ public:
 };
 
 template <class T>
-THeadList<T>::THeadList()
+THeadList<T>::THeadList() :TList<T>()
 {
 	pHead = new TNode<T>;
 	pStop = pHead;
