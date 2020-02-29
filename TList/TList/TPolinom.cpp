@@ -188,38 +188,45 @@ TPolinom::TPolinom() :THeadList<TMonom>()
 TPolinom::TPolinom(TPolinom& p) :THeadList<TMonom>()
 {
 	pHead->val.pz = -1;
-	for (Reset(); !IsEnd(); GoNext())
+	TMonom tmp;
+	for (p.Reset(); !p.IsEnd(); p.GoNext())
 	{
-
+		tmp = p.pCurr->val;
+		InsLast(tmp);
 	}
 }
 
-TPolinom::TPolinom(int arr[][2], int size)
+TPolinom::TPolinom(int arr[][2], int size) :THeadList<TMonom>()
 {
-
+	pHead->val.pz = -1;
+	TMonom mon;
+	for (int i = 0; i < size; i++)
+	{
+		
+	}
 }
 
 TPolinom& TPolinom::operator=(TPolinom& p)
 {
-
+	return *this;
 }
 
 TPolinom& TPolinom::operator+=(TMonom& mon)
 {
-
+	return *this;
 }
 
 TPolinom TPolinom::operator+(TMonom& mon)
 {
-
+	return *this;
 }
 
 TPolinom& TPolinom::operator*=(TMonom& mon)
 {
-
+	return *this;
 }
 
 TPolinom TPolinom::operator*(TMonom& mon)
 {
-
+	return *this;
 }
