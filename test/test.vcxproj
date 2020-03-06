@@ -86,7 +86,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,8 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\TPolinom\TPolinom.cpp" />
     <ClCompile Include="gtest-all.cc" />
     <ClCompile Include="test_main.cpp" />
+    <ClCompile Include="test_THeadList.cpp" />
+    <ClCompile Include="test_TList.cpp" />
+    <ClCompile Include="test_TPolinom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gtest.h" />
