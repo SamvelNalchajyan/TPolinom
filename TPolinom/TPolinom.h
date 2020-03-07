@@ -28,4 +28,6 @@ public:
 	TPolinom operator+(TMonom& mon);
 	TPolinom& operator*=(TMonom& mon);
 	TPolinom operator*(TMonom& mon);
+	TPolinom& operator+=(TPolinom& p);
+	TPolinom operator+(TPolinom& p);
 };
