@@ -322,3 +322,48 @@ TPolinom TPolinom::operator+(TPolinom& p)
 	tmp += p;
 	return tmp;
 }
+
+bool TPolinom::operator==(TPolinom& p)
+{
+	p.Reset();
+	if (len != p.len)
+	{
+		return false;
+	}
+	for (Reset(); !IsEnd(); GoNext())
+	{
+		if (pCurr->val != p.pCurr->val)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool TPolinom::operator!=(TPolinom& p)
+{
+	if (*this == p)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+TPolinom& TPolinom::operator*=(double a)
+{
+	for (Reset(); !IsEnd(); GoNext())
+	{
+		pCurr->val.coeff *= a;
+	}
+	return *this;
+}
+
+TPolinom TPolinom::operator*(double a)
+{
+	TPolinom tmp(*this);
+	tmp *= a;
+	return tmp;
+}

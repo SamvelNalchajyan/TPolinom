@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "THeadList.h"
 
 struct TMonom
@@ -30,4 +31,34 @@ public:
 	TPolinom operator*(TMonom& mon);
 	TPolinom& operator+=(TPolinom& p);
 	TPolinom operator+(TPolinom& p);
+	bool operator==(TPolinom& p);
+	bool operator!=(TPolinom& p);
+	TPolinom& operator*=(double a);
+	TPolinom operator*(double a);
+	/*
+	friend istream& operator>>(istream& in, TPolinom& P)
+	{
+		
+		TMonom mon;
+		double coeff = 1;
+		int px = 0, py = 0, pz = 0;
+		while (coeff != 0)
+		{
+			in >> coeff >> px >> py >> pz;
+			mon.coeff = coeff;
+			mon.px = px;
+			mon.py = py;
+			mon.pz = pz;
+			P += mon;
+		}
+		return in;
+	}
+	friend ostream& operator<<(ostream& out, TPolinom& P)
+	{
+		for (P.Reset(); !P.IsEnd(); P.GoNext())
+		{
+			out << P.pCurr->val.coeff << "x^" << P.pCurr->val.px << "y^" << P.pCurr->val.py << "z^" << P.pCurr->val.pz;
+		}
+		return out;
+	}*/
 };

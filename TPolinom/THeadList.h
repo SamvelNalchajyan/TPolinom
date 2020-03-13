@@ -21,6 +21,7 @@ THeadList<T>::THeadList() :TList<T>()
 	pStop = pHead;
 	pHead->pNext = pHead;
 	pFirst = pHead;
+	pLast = pHead;
 }
 
 template <class T>
