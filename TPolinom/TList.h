@@ -87,6 +87,10 @@ void TList<T>::InsLast(T el)
 template <class T>
 void TList<T>::DelFirst()
 {
+	if (pCurr == pFirst)
+	{
+		GoNext();
+	}
 	TNode<T>* tmp = pFirst;
 	pFirst = pFirst->pNext;
 	delete tmp;

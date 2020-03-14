@@ -35,8 +35,8 @@ public:
 	bool operator!=(TPolinom& p);
 	TPolinom& operator*=(double a);
 	TPolinom operator*(double a);
-	/*
-	friend istream& operator>>(istream& in, TPolinom& P)
+	
+	friend std::istream& operator>>(std::istream& in, TPolinom& P)
 	{
 		
 		TMonom mon;
@@ -53,12 +53,12 @@ public:
 		}
 		return in;
 	}
-	friend ostream& operator<<(ostream& out, TPolinom& P)
+	friend std::ostream& operator<<(std::ostream& out, TPolinom& P)
 	{
 		for (P.Reset(); !P.IsEnd(); P.GoNext())
 		{
-			out << P.pCurr->val.coeff << "x^" << P.pCurr->val.px << "y^" << P.pCurr->val.py << "z^" << P.pCurr->val.pz;
+			out << '(' << P.pCurr->val.coeff << ')' << "x^" << P.pCurr->val.px << "y^" << P.pCurr->val.py << "z^" << P.pCurr->val.pz << "  ";
 		}
 		return out;
-	}*/
+	}
 };

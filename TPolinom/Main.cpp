@@ -9,6 +9,7 @@ int main()
 {
 	setlocale(LC_CTYPE, "Russian");
 	/*..........................................*/
+	/*
 	int mas[2][2];
 	mas[0][0] = 5;
 	mas[1][0] = -3;
@@ -24,6 +25,17 @@ int main()
 	P += m1;
 	TPolinom Q = P;
 	Q += P;
+	*/
+	TPolinom P, Q;
+	cout << "¬ведите P" << endl;
+	cin >> P;
+	cout << "¬вудитк Q" << endl;
+	cin >> Q;
+	cout << endl;
+	cout << "P = " << P << endl;
+	cout << "Q = " << Q << endl;
+	TPolinom T = P + Q;
+	cout << "P + Q = " << T << endl;
 	/*..........................................*/
 	system("pause");
 	return 0;

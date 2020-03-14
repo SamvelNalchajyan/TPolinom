@@ -223,29 +223,32 @@ TPolinom& TPolinom::operator=(TPolinom& p)
 
 TPolinom& TPolinom::operator+=(TMonom& mon)
 {
-	for (Reset(); !IsEnd(); GoNext())
+	if (mon.coeff)
 	{
-		if (mon == pCurr->val)
+		for (Reset(); !IsEnd(); GoNext())
 		{
-			double tmp = mon.coeff + pCurr->val.coeff;
-			if (tmp != 0)
+			if (mon == pCurr->val)
 			{
-				pCurr->val.coeff = tmp;
-				return *this;
+				double tmp = mon.coeff + pCurr->val.coeff;
+				if (tmp != 0)
+				{
+					pCurr->val.coeff = tmp;
+					return *this;
+				}
+				else
+				{
+					DelCurr();
+					return *this;
+				}
 			}
-			else
+			if (mon > pCurr->val)
 			{
-				DelCurr();
+				InsCurr(mon);
 				return *this;
 			}
 		}
-		if (mon > pCurr->val)
-		{
-			InsCurr(mon);
-			return *this;
-		}
+		InsLast(mon);
 	}
-	InsLast(mon);
 	return *this;
 }
 
