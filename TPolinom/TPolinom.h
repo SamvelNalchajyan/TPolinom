@@ -57,8 +57,9 @@ public:
 	{
 		for (P.Reset(); !P.IsEnd(); P.GoNext())
 		{
-			out << '(' << P.pCurr->val.coeff << ')' << "x^" << P.pCurr->val.px << "y^" << P.pCurr->val.py << "z^" << P.pCurr->val.pz << "  ";
+			out << '(' << P.pCurr->val.coeff << ')' << "x^" << P.pCurr->val.px << "y^" << P.pCurr->val.py << "z^" << P.pCurr->val.pz << " + ";
 		}
+		out << 0;
 		return out;
 	}
 };

@@ -328,19 +328,31 @@ TPolinom TPolinom::operator+(TPolinom& p)
 
 bool TPolinom::operator==(TPolinom& p)
 {
+	int flag = 0;
 	p.Reset();
-	if (len != p.len)
-	{
-		return false;
-	}
 	for (Reset(); !IsEnd(); GoNext())
 	{
 		if (pCurr->val != p.pCurr->val)
 		{
-			return false;
+			flag++;
 		}
 	}
-	return true;
+	Reset();
+	for (p.Reset(); !p.IsEnd(); p.GoNext())
+	{
+		if (p.pCurr->val != pCurr->val)
+		{
+			flag++;
+		}
+	}
+	if (flag > 0)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 bool TPolinom::operator!=(TPolinom& p)

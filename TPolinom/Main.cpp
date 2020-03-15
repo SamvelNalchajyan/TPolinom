@@ -26,16 +26,39 @@ int main()
 	TPolinom Q = P;
 	Q += P;
 	*/
+	
 	TPolinom P, Q;
 	cout << "¬ведите P" << endl;
 	cin >> P;
-	cout << "¬вудитк Q" << endl;
+	cout << "¬ведите Q" << endl;
 	cin >> Q;
 	cout << endl;
 	cout << "P = " << P << endl;
 	cout << "Q = " << Q << endl;
 	TPolinom T = P + Q;
 	cout << "P + Q = " << T << endl;
+	
+	/*
+	TMonom m1, m2;
+	m1.coeff = 9.9;
+	m1.px = 6;
+	m1.py = 12;
+	m1.pz = 2;
+	m2.coeff = 8;
+	m2.px = 8;
+	m2.py = 0;
+	m2.pz = 11;
+	TPolinom p;
+	cout << "¬ведите p" << endl;
+	cin >> p;
+	cout << p << endl;
+	p *= m1;
+	p += m2;
+	p *= m2;
+	p += m1;
+	cout << p << endl;
+	*/
+
 	/*..........................................*/
 	system("pause");
 	return 0;

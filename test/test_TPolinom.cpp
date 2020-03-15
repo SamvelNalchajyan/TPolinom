@@ -1,9 +1,50 @@
 #include "gtest.h"
 #include "../TPolinom/TPolinom.h"
 
+TEST(TMonom, can_create_monom)
+{
+	ASSERT_NO_THROW(TMonom mon);
+}
+
+TEST(TMonom, assignment_operators_works_correctly)
+{
+	TMonom m1, m2;
+	EXPECT_EQ(true, m1 == m2);
+	EXPECT_EQ(false, m1 != m2);
+	m1.coeff = 5;
+	m1.px = 1;
+	m1.py = 2;
+	m1.pz = 3;
+	EXPECT_EQ(false, m1 == m2);
+	EXPECT_EQ(true, m1 != m2);
+	m2.coeff = 5;
+	m2.px = 1;
+	m2.py = 2;
+	m2.pz = 3;
+	EXPECT_EQ(true, m1 == m2);
+	EXPECT_EQ(false, m1 != m2);
+	m2.px = 2;
+	EXPECT_EQ(true, m1 < m2);
+	EXPECT_EQ(true, m1 <= m2);
+	EXPECT_EQ(false, m1 > m2);
+	EXPECT_EQ(false, m1 >= m2);
+}
+
+/*.................................................*/
+
 TEST(TPolinom, can_create_polinomial)
 {
 	ASSERT_NO_THROW(TPolinom P);
+}
+
+TEST(TPolinom, can_create_polinomial_through_array)
+{
+	int arr[2][2];
+	arr[0][0] = 2;
+	arr[1][0] = 1;
+	arr[0][1] = 222;
+	arr[1][1] = 111;
+	ASSERT_NO_THROW(TPolinom p(arr, 2));
 }
 
 TEST(TPolinom, equality_operator_works_correctly)
@@ -15,8 +56,10 @@ TEST(TPolinom, equality_operator_works_correctly)
 	mon.pz = 0;
 	TPolinom P;
 	P += mon;
-	ASSERT_NO_THROW(P == P);
-	EXPECT_EQ(true, P == P);
+	TPolinom Q;
+	Q += mon;
+	ASSERT_NO_THROW(P == Q);
+	EXPECT_EQ(true, P == Q);
 }
 
 TEST(TPolinom, can_copy_polinomials)
@@ -47,124 +90,79 @@ TEST(TPolinom, assignment_operator_works_correctly)
 	EXPECT_EQ(true, P == Q);
 }
 
-/*...................................................*/
-
-TEST(TMonom, can_ins_monom_with_pos_coef)
-{
-	TMonom m;
-	m.px = 0;
-	m.py = 0;
-	m.pz = 0;
-	ASSERT_NO_THROW(m.coeff = 1);
-}
-
-TEST(TMonom, can_ins_monom_with_neg_coef)
-{
-	TMonom m;
-	m.px = 0;
-	m.py = 0;
-	m.pz = 0;
-	ASSERT_NO_THROW(m.coeff = -1);
-}
-
-TEST(TMonom, can_ins_monom_with_neg_step)
-{
-	TMonom m;
-	m.px = 1;
-	m.py = 1;
-	m.pz = 1;
-	ASSERT_NO_THROW(m.coeff = 5);
-}
-
-TEST(TMonom, can_ins_monom_with_pos_step)
-{
-	TMonom m;
-	m.px = -1;
-	m.py = -1;
-	m.pz = -1;
-	ASSERT_NO_THROW(m.coeff = -5);
-}
-
-TEST(TMonom, can_compare_the_monomials)
-{
-	TMonom m1, m2;
-	m1.coeff = 5;
-	m1.px = 1;
-	m1.py = 1;
-	m1.pz = 1;
-	m2.coeff = 7;
-	m2.px = 1;
-	m2.py = 1;
-	m2.pz = 1;
-	EXPECT_EQ(m1 == m2, 1);
-}
-
-TEST(TMonom, can_ne_monoms)
-{
-	TMonom m1, m2;
-	m1.coeff = 5;
-	m1.px = 1;
-	m1.py = 1;
-	m1.pz = 1;
-	m2.coeff = 7;
-	m2.px = 1;
-	m2.py = 2;
-	m2.pz = 3;
-	EXPECT_EQ(m1 != m2, 1);
-}
-
-TEST(TMonom, Sravnenie)
-{
-	TMonom m1, m2;
-	m1.coeff = 5;
-	m1.px = 1;
-	m1.py = 1;
-	m1.pz = 1;
-	m2.coeff = 7;
-	m2.px = 1;
-	m2.py = 2;
-	m2.pz = 3;
-	EXPECT_EQ(m1 < m2, 1);
-	EXPECT_EQ(m1 > m2, 0);
-}
-
-TEST(TPolinom, can_create_polynom)
-{
-	ASSERT_NO_THROW(TPolinom p);
-}
-
-TEST(TPolinom, can_create_polynom_with_arr)
-{
-	int arr[2][2];
-	arr[0][0] = 1;
-	arr[1][0] = 1;
-	arr[0][1] = 1;
-	arr[1][1] = 1;
-	ASSERT_NO_THROW(TPolinom p(arr, 2));
-}
-
-TEST(TPolinom, can_copy_polynom)
-{
-	int arr[2][2];
-	arr[0][0] = 1;
-	arr[1][0] = 1;
-	arr[0][1] = 1;
-	arr[1][1] = 1;
-	TPolinom p(arr, 2);
-	ASSERT_NO_THROW(TPolinom p_copy(p));
-}
-
 TEST(TPolinom, can_add_monom)
 {
 	TPolinom p;
-	TMonom a;
-	a.coeff = 1;
-	a.px = 1;
-	a.py = 1;
-	a.pz = 1;
-	ASSERT_NO_THROW(p += a);
-	ASSERT_NO_THROW(p * 5);
-	ASSERT_NO_THROW(p *= 5);
-	ASSERT_NO_THROW(p * a);
-	ASSERT_NO_THROW(p *= a);
+	TMonom mon;
+	mon.coeff = 5;
+	mon.px = 6;
+	mon.py = 11;
+	mon.pz = 9;
+	ASSERT_NO_THROW(p += mon);
+	ASSERT_NO_THROW(p = p + mon);
+	TPolinom P;
+	P += mon;
+	mon.coeff = 7;
+	P += mon;
+	P.Reset();
+	EXPECT_EQ(12, P.GetCurrEl().coeff);
+}
+
+TEST(TPolinom, addition_works_correctly)
+{
+	TPolinom P;
+	TMonom mon;
+	mon.coeff = 5;
+	mon.px = 6;
+	mon.py = 11;
+	mon.pz = 9;
+	P += mon;
+	TPolinom Q = P * 2;
+	P += mon;
+	EXPECT_EQ(true, P == Q);
+	TMonom m1, m2, m3;
+	m1.coeff = -10;
+	m1.px = 6;
+	m1.py = 11;
+	m1.pz = 9;
+	P += m1;
+	TPolinom empty;
+	EXPECT_EQ(true, P == empty);
+	P = Q;
+	m2.coeff = 5;
+	m2.px = 5;
+	m2.py = 5;
+	m2.pz = 5;
+	P += m2;
+	m3.coeff = 6;
+	m3.px = 5;
+	m3.py = 5;
+	m3.pz = 5;
+	P += m3;
+	Q = P * (-1);
+	P += Q;
+	EXPECT_EQ(true, P == empty);
+	P = P + Q;
+	Q *= -1;
+	P += Q;
+	EXPECT_EQ(true, P == empty);
+}
+
+TEST(TPolinom, can_multiply_monom)
+{
+	TPolinom P;
+	TMonom mon;
+	mon.coeff = 5;
+	mon.px = 6;
+	mon.py = 11;
+	mon.pz = 9;
+	P += mon;
+	TPolinom p;
+	ASSERT_NO_THROW(p *= mon);
+	P *= mon;
+	P.Reset();
+	EXPECT_EQ(25, P.GetCurrEl().coeff);
+	EXPECT_EQ(12, P.GetCurrEl().px);
+	EXPECT_EQ(22, P.GetCurrEl().py);
+	EXPECT_EQ(18, P.GetCurrEl().pz);
 }
