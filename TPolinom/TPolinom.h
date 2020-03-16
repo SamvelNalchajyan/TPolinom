@@ -38,7 +38,6 @@ public:
 	
 	friend std::istream& operator>>(std::istream& in, TPolinom& P)
 	{
-		
 		TMonom mon;
 		double coeff = 1;
 		int px = 0, py = 0, pz = 0;

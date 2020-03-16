@@ -332,18 +332,34 @@ bool TPolinom::operator==(TPolinom& p)
 	p.Reset();
 	for (Reset(); !IsEnd(); GoNext())
 	{
-		if (pCurr->val != p.pCurr->val)
+		if (pCurr->val.coeff != p.pCurr->val.coeff)
 		{
 			flag++;
 		}
+		else
+		{
+			if (pCurr->val != p.pCurr->val)
+			{
+				flag++;
+			}
+		}
+		p.GoNext();
 	}
 	Reset();
 	for (p.Reset(); !p.IsEnd(); p.GoNext())
 	{
-		if (p.pCurr->val != pCurr->val)
+		if (p.pCurr->val.coeff != pCurr->val.coeff)
 		{
 			flag++;
 		}
+		else
+		{
+			if (p.pCurr->val != pCurr->val)
+			{
+				flag++;
+			}
+		}
+		GoNext();
 	}
 	if (flag > 0)
 	{
